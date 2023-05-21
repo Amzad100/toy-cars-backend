@@ -44,6 +44,18 @@ async function run() {
             const result = await toysCollection.find({}).toArray();
             res.send(result);
         })
+        
+        app.get('/alltoys/:category', async (req, res) => {
+            console.log(req.params.category)
+            if (req.params.category == "SportsCars" || req.params.category == "PoliceCars" || req.params.category == "Truck") {
+                const result = await toysCollection.find({ category_name: req.params.category }).toArray();
+                return res.send(result)
+            }
+            const result = await toysCollection.find({}).toArray();
+            res.send(result);
+        })
+
+
 
         
 
